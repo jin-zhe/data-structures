@@ -1,6 +1,10 @@
 import java.util.Arrays;
 
-
+/**
+ * Java implementation for Hashmap
+ * @param <K>	Generic type for key object
+ * @param <V>	Generic type for value object
+ */
 public class MyHashMap<K, V> {
 	private Entry<K,V>[] table;
 	private int capacity;
@@ -132,7 +136,7 @@ public class MyHashMap<K, V> {
 		int index = 0;
 		for (Entry<K, V> entry: table){
 			while (entry != null){
-				list[index] = entry;
+				list[index] = new Entry<K, V>(entry.key, entry.value);
 				index++;
 				entry = entry.next;
 			}
@@ -172,7 +176,15 @@ public class MyHashMap<K, V> {
 	 * Rehashes the current hashmap by doubling capacity
 	 */
 	public void rehash(){
-		// TODO
+		Entry<K, V>[] list = asList();	// save current entries as list
+		capacity *= 2;					// double the capacity
+		size = 0;						// resets size
+		table = new Entry[capacity];	// clears and re-initializes table
+		
+		/* puts each entry back into table */
+		for (Entry<K, V> entry: list) {
+			put(entry.key, entry.value);
+		}
 	}
 	
 	/**
@@ -228,6 +240,9 @@ public class MyHashMap<K, V> {
 			this.value = value;
 			this.next = next;
 		}
+		public Entry(K key, V value){
+			this(key, value, null);
+		}
 		
 		/**
 		 * String representation of entry as a tuple
@@ -241,10 +256,10 @@ public class MyHashMap<K, V> {
 	 * Main method to test the data structure
 	 */
 	public static void main(String[] args) {
-        MyHashMap<Integer, String> map = new MyHashMap<Integer, String>();
+        MyHashMap<Integer, String> map = new MyHashMap<Integer, String>(2);	// hashmap with capacity of 2 (to test rehashing)
         /* test insertions */
         map.put(42, "Answer to The Ultimate Question of Life, the Universe, and Everything");
-        map.put(529, "Five hundred and twenty-nine");
+        map.put(529, "Five hundred and twenty-nine");	// will rehash (lf == 1.0)
         map.put(15, "Fifteen");
         map.put(87, "Eighty Seven");
         map.put(6, "Six");
