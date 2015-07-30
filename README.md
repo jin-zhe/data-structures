@@ -1,7 +1,7 @@
 # Data Structures
 My personal Java practises for implementing some well-known data-structures.
 
-* [Adelson-Velskii and Landis (AVL) Binary Search Tree](AVLtree.java)
+* [Adelson-Velskii and Landis (AVL) Binary Search Tree](AVLTree.java)
 * [HashMap](MyHashMap.java)
 * [Heap](MyHeap.java)
 * [LinkedList](MyLinkedList.java)
