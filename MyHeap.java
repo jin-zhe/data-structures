@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 /**
  * Implementation of a max heap. i.e. ancestors value > descendants value
- * @author Kilroy
  * @param <T>	generic type for the type of objects to be inserted
  */
 class MyHeap <T extends Comparable<T>> {
